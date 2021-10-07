@@ -10,7 +10,12 @@
 			method: 'post',
 			body: name,
 		})
-		.then(response => response.text())
+		.then(response => {
+			if (!response.ok) {
+				throw response;
+			}
+			return response.text()
+		})
 		.then(text => reply = text)
 		.catch(e => err = e)
 	}
